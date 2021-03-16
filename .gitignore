@@ -1,0 +1,13 @@
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+.vs/
+*.csproj
+*.sln
+Assets/Assets_By_Unluck_Activeden/
+Assets/Texture/切图/000全息投医-首页/000全息投影-首页.tif
+Assets/Texture/切图/000全息投医-首页/000全息投影-首页.tif.meta
+Assets/StreamingAssets/Movies/

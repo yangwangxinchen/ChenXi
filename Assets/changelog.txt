@@ -1,0 +1,13 @@
+
+##Version 1.1(2021.2.23)
+
+-Updated
+图片更新
+文本内容，间隔，标点校正
+背景音乐更改
+
+##Version 1.1(2021.1.30)
+-Updated...
+-Fixed ...
+
+##Initial Version 1.0(2021.1.20)
