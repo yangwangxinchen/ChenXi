@@ -190,6 +190,7 @@ namespace TouchScript.Editor
 			}
         }
 
+        [System.Obsolete]
         private void drawSendMessage()
         {
 			var display = GUIElements.Header(TEXT_USE_SEND_MESSAGE_HEADER, useSendMessage, useSendMessage, useSendMessage_prop);

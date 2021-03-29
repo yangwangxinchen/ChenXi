@@ -27,9 +27,12 @@ public class CreateObjManager : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// 实例化专家图片
+    /// </summary>
     public  void CreateObj()
     {
-        experts = new GameObject[10];
+        experts = new GameObject[ExpertList.expertModels.Count];
         //horizontalLayoutGroup.enabled = true;
         for (int i = 0; i < ExpertList.expertModels.Count; i++)
         {
@@ -55,14 +58,19 @@ public class CreateObjManager : MonoBehaviour
         ShowExpert();
     }
 
+    /// <summary>
+    /// 专家图片 dotween 动画
+    /// </summary>
    public void ShowExpert()
     {
-       // horizontalLayoutGroup.enabled = false;
+        //隐藏最后一张图的蓝色线条
+        experts[experts.Length - 1].GetComponent<ExpertIcon>().HideBlue();
+        // horizontalLayoutGroup.enabled = false;
         sequence = DOTween.Sequence();
         for (int i = 0; i < experts.Length; i++)
         {       
-            sequence.AppendInterval(0.5f);
-            sequence.Append(experts[i].transform.DOLocalMoveY(350, 1));                             
+            sequence.AppendInterval(0.2f);
+            sequence.Append(experts[i].transform.DOLocalMoveY(350, 0.8f));                             
         }
     }
 

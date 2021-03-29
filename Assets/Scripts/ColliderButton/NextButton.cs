@@ -26,6 +26,10 @@ public class NextButton : MonoBehaviour
     //设置页面显示
     public void SetPageActive(int currentPage)
     {
+        if (productPages.Length==0)
+        {
+            return;
+        }
         for (int i = 0; i < productPages.Length; i++)
         {
             productPages[i].SetActive(false);

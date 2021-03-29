@@ -8,9 +8,8 @@ public class ParticleScale : MonoBehaviour {
 
 	private ParticleSystem _particle = null;
 
-
-
-	public void UpdateScale(float mod) {
+    [System.Obsolete]
+    public void UpdateScale(float mod) {
 
 		if(particle == null) {
 			return;

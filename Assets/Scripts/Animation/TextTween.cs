@@ -42,7 +42,7 @@ public class TextTween : MonoBehaviour
         //    source.loop = true;
         //}
 
-        infos = ReadData.instance.infoModel.infolist[infolistIndex].content[contentIndex].ToArray();
+        ////infos = ReadData.instance.infoModel.infolist[infolistIndex].content[contentIndex].ToArray();
 
         //infos = ContentListModel.contentModels[0].contents;
         //第一次主动调用

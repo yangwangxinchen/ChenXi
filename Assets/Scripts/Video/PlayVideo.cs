@@ -37,27 +37,26 @@ public class PlayVideo : MonoBehaviour
         videoPlayer.isLooping = isLoop;
     }
 
-    public void PrepareVideo(string videoName)
+    /// <summary>
+    /// 视频缓冲  
+    /// </summary>
+    /// <param name="videoName">视频相对于【视频】文件夹下的相对路径</param>
+    public void PrepareVideo(string filePath)
     {
         //视频文件路径
         //string url = "file:///" + Application.dataPath + "/Movies/movie01.mov";
-        if (string.IsNullOrEmpty(videoName))
+   
+        if (filePath!=null)
         {
-            Debug.Log("找不到视频文件！");
-            return;
-        }
-
-        string filePath= Application.streamingAssetsPath + "/Movies/" + videoName;
-        if (File.Exists(filePath))
-        {
+            //路径赋值
             videoPlayer.url = "file:///" + filePath;
             StartCoroutine(DelayPlayVideo());
         }
         else
         {
-            Debug.Log("找不到视频文件！");
+            //未找到路径
         }
-        
+       
     }
     IEnumerator DelayPlayVideo()
     {
@@ -68,22 +67,16 @@ public class PlayVideo : MonoBehaviour
             //Debug.Log("准备中，视频加载中...");
             yield return null;
         }
-        //Debug.Log("准备完毕");
-        //videoPlayer.targetTexture.Release();
+        //播放视频
         videoPlayer.Play();
     }
 
     private void OnDestroy()
-    {
-        
+    {       
         if (ReadData.instance.audioSource!=null)
         {
             ReadData.instance.audioSource.Play();
         }
     }
 
-    private void OnDisable()
-    {
-        
-    }
 }

@@ -4,6 +4,7 @@ using TouchScript.Gestures;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System;
 public class ExpertIcon : MonoBehaviour
 {
     public Image image;
@@ -13,9 +14,10 @@ public class ExpertIcon : MonoBehaviour
     PressGesture pressGesture;
     RectTransform rect;
     bool isBig = false;
-
-    GameObject blue;
-    bool isLast;
+    /// <summary>
+    /// 蓝色线条
+    /// </summary>
+    [HideInInspector]public GameObject blue;
 
  
 
@@ -23,33 +25,27 @@ public class ExpertIcon : MonoBehaviour
     {
         pressGesture = GetComponent<PressGesture>();
         pressGesture.Pressed += PressGesture_Pressed;
-        rect = GetComponent<RectTransform>();
-
-        blue = transform.GetChild(1).gameObject;
-
-        
+        rect = GetComponent<RectTransform>();      
     }
 
-    //public bool IsLast
-    //{
-    //    get => isLast;
-
-    //    set
-    //    {
-    //        isLast = value;
-    //        if (isLast&& blue)
-    //        {
-
-    //            blue.SetActive(false);
-    //        }
-    //    }
-    //}
+    public void HideBlue()
+    {
+        blue = transform.GetChild(1).gameObject;
+        blue.SetActive(false);
+    }
+    
 
     private void PressGesture_Pressed(object sender, System.EventArgs e)
     {
         SetScale();
     }
 
+    /// <summary>
+    /// 给图片预设物赋值
+    /// </summary>
+    /// <param name="_spritePath">专家图片路径</param>
+    /// <param name="_title">专家名</param>
+    /// <param name="_subtitle">专家介绍</param>
     public void SetValue(string _spritePath,string _title,string _subtitle)
     {
         image.sprite = Resources.Load<Sprite>("expert/"+_spritePath);
@@ -61,6 +57,9 @@ public class ExpertIcon : MonoBehaviour
         //}
     }
 
+    /// <summary>
+    /// 对图片进行放大缩小
+    /// </summary>
     public void SetScale()
     {
         if (isBig)

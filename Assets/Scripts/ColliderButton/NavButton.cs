@@ -14,10 +14,10 @@ public class NavButton : MonoBehaviour
     
     public GameObject currentPage;
 
-    [Header("需要隐藏的子界面")]
-    public GameObject navSubHidePage;
-    [Header("需要显示的子界面")]
-    public GameObject navSubShowPage;
+    //[Header("需要隐藏的子界面")]
+     GameObject navSubHidePage;
+    //[Header("需要显示的子界面")]
+     GameObject navSubShowPage;
 
     PressGesture pressGesture;
 
@@ -34,7 +34,7 @@ public class NavButton : MonoBehaviour
     {
         navPage.SetActive(true);
 
-        SetDefaultState();
+        //SetDefaultState();
 
         currentPage.SetActive(false);
     }

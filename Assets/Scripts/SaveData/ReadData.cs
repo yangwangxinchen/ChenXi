@@ -9,8 +9,8 @@ public class ReadData : MonoBehaviour
 {
 
     public static ReadData instance;
-    public InfoModel infoModel = new InfoModel();
-    public VideoModel videoModel = new VideoModel();
+   
+    public VideoModel videoModel;
 
     /// <summary>
     /// 一级目录音乐
@@ -20,21 +20,21 @@ public class ReadData : MonoBehaviour
     /// 首页目录音乐
     /// </summary>
     public AudioSource mainAudioSource;
-    //string path;
-    //string mainAudioPath;
+ 
 
     private void Awake()
     {
         instance = this;
-        ReadDataByModel();
+        //ReadDataByModel();
     }
     private void Start()
     {
         Screen.SetResolution(2048, 768,true);
 
         StartCoroutine(LoadAudio("main", (o) => {
-            mainAudioSource.clip = o;
-            mainAudioSource.Play(); 
+ 
+                mainAudioSource.clip = o;
+                mainAudioSource.Play();                 
         }));
 
         StartCoroutine(LoadAudio("one", (o) => {
@@ -66,7 +66,7 @@ public class ReadData : MonoBehaviour
 
     IEnumerator LoadAudio(string soundName,System.Action<AudioClip> action)
     {
-        string uri = Application.streamingAssetsPath+"/audio/" + soundName + ".wav";
+        string uri = Application.streamingAssetsPath+"/音频/" + soundName + ".wav";
         using (UnityWebRequest request = UnityWebRequestMultimedia.GetAudioClip(uri, AudioType.WAV))
         {
             yield return request.SendWebRequest();
@@ -89,7 +89,6 @@ public class ReadData : MonoBehaviour
 
     public void ReadDataByModel()
     {
-        //infoModel = GetData<InfoModel>("info.json");
         videoModel = GetData<VideoModel>("videolist.json");
     }
 
@@ -100,7 +99,12 @@ public class ReadData : MonoBehaviour
         return JsonMapper.ToObject<T>(js);    //返回数据模型
     }
 
-
-
+   
+    public GameObject LoadResourcesAsset(string assetpath)
+    {
+        GameObject prefab=Resources.Load<GameObject>(assetpath);
+        GameObject go= Instantiate(prefab);
+        return go;
+    }
 
 }

@@ -48,6 +48,7 @@ namespace TouchScript.Devices.Display
         }
 
         /// <inheritdoc />
+        [System.Obsolete]
         protected override void OnEnable()
         {
             base.OnEnable();
@@ -60,6 +61,7 @@ namespace TouchScript.Devices.Display
             UpdateDPI();
         }
 
+        [System.Obsolete]
         private void updateNativeResulotion()
         {
             switch (Application.platform)

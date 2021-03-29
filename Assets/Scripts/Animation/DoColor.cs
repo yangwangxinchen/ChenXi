@@ -32,9 +32,9 @@ public class DoColor : MonoBehaviour
         {   
              for (int i = 0; i < texts.Length; i++)
              {
-                    sequence.Append(texts[i].DOFade(1, 1).SetEase(Ease.InExpo));
+                    sequence.Append(texts[i].DOFade(1,1).SetEase(Ease.InExpo));
 
-                    sequence.AppendInterval(0.5f);
+                    sequence.AppendInterval(0.2f);
              }                      
         }
     }
