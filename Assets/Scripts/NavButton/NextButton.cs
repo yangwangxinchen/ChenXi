@@ -40,7 +40,12 @@ public class NextButton : MonoBehaviour
 
     private void PressGesture_Pressed(object sender, EventArgs e)
     {
-        ChangePage();
+        if (isClick)
+        {
+            ChangePage();
+            isClick = false;
+        }
+        
     }
 
     public void ChangePage()
@@ -59,5 +64,20 @@ public class NextButton : MonoBehaviour
         SetPageActive(0);
     }
 
+    bool isClick;
+    float intervalTime;
+    float desireTime = 1f;
+    private void Update()
+    {
+        if (isClick == false)
+        {
+            intervalTime += Time.deltaTime;
+            if (intervalTime >= desireTime)
+            {
+                isClick = true;
+                intervalTime = 0;
+            }
+        }
 
+    }
 }

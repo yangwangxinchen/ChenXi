@@ -13,6 +13,8 @@ public class PlanePicMove : MonoBehaviour
     Vector2 titleOriginPos;
     Vector2 starOriginPos;
 
+    [HideInInspector] public PlanePicMove next;
+
     private void Awake()
     {
         infoOriginPos = info.anchoredPosition;
@@ -31,13 +33,19 @@ public class PlanePicMove : MonoBehaviour
     public void TweenMove()
     {
         //1.星星移动
-        star.DOAnchorPos(starOriginPos, 1).OnComplete(() =>
+        star.DOAnchorPos(starOriginPos,0.8f).OnComplete(() =>
            {
-               //2.上方信息移动
-               info.DOAnchorPos(infoOriginPos, 1).OnComplete(() => 
+               //2.下方信息移动
+               title.DOAnchorPos(titleOriginPos,0.8f).OnComplete(() => 
                {
-                   //3.下方信息移动
-                   title.DOAnchorPos(titleOriginPos, 1);
+                   //3.上方信息移动
+                   info.DOAnchorPos(infoOriginPos, 1).OnComplete(()=>
+                   {
+                       if (next!=null)
+                       {
+                           next.TweenMove();
+                       }
+                   });
                               
                });
            }
@@ -45,16 +53,21 @@ public class PlanePicMove : MonoBehaviour
     );
     }
 
-    private void OnEnable()
-    {  
-        TweenMove();
-    }
-
-    private void OnDisable()
+    public void ResetDefault()
     {
         star.DOKill();
         info.DOKill();
         title.DOKill();
         SetBeginPosition();
+    }
+
+    private void OnEnable()
+    {  
+        //TweenMove();
+    }
+
+    private void OnDisable()
+    {
+        //ResetDefault();
     }
 }

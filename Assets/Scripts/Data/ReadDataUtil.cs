@@ -19,6 +19,7 @@ public class ReadDataUtil
         {
             byte[] picBytes = File.ReadAllBytes(picPath);
             Texture2D texture2D = new Texture2D(128, 128);
+            //Texture2D.LoadImage()是只用于加载PNG/JPG数组字节，而不是Transture2D数组字节
             texture2D.LoadImage(picBytes);
             Sprite sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), Vector2.one / 2f);
             return sprite;
@@ -71,6 +72,29 @@ public class ReadDataUtil
         }
         //Debug.Log(picPath);
         return null;
+    }
+
+    public static List<string> ReadMoveContent(string moveDir)
+    {
+        List<string> moveNames = new List<string>();
+        DirectoryInfo directoryInfo = new DirectoryInfo(Application.streamingAssetsPath + "/视频/" + moveDir);
+
+        if (directoryInfo.Exists)
+        {
+            FileInfo[] infos = directoryInfo.GetFiles();
+
+            if (infos.Length != 0)
+            {
+                foreach (FileInfo item in infos)
+                {
+                    //过滤掉.meta文件
+                    if (item.Extension.Contains(".meta")) continue;
+                    moveNames.Add(item.Name); //1.mov
+                }
+            }
+        }
+
+        return moveNames;
     }
 
     public void ReadDataByModel()

@@ -8,7 +8,7 @@ public class BackMainButton : MonoBehaviour
 {
     public GameObject backPage;
     public GameObject currentPage;
-    GameObject planetPanel;
+    GameObject contentPanel;
 
     PressGesture pressGesture;
 
@@ -18,7 +18,7 @@ public class BackMainButton : MonoBehaviour
     {
         pressGesture = GetComponent<PressGesture>();
         pressGesture.Pressed += PressGesture_Pressed;
-        planetPanel = GameObject.FindGameObjectWithTag("planetPanel");
+        contentPanel = GameObject.FindGameObjectWithTag("planetPanel");
     }
 
     private void PressGesture_Pressed(object sender, EventArgs e)
@@ -32,8 +32,8 @@ public class BackMainButton : MonoBehaviour
         //一级目录音乐暂停
         ReadData.instance.audioSource.Pause();
 
-        //一级目录隐藏
-        planetPanel.transform.GetChild(0).gameObject.SetActive(false);
+        //一级目录 子页面隐藏
+        contentPanel.transform.GetChild(0).gameObject.SetActive(false);
 
         currentPage.SetActive(false);
     }

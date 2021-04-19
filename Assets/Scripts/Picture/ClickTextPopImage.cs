@@ -16,7 +16,7 @@ public class ClickTextPopImage : MonoBehaviour
     public string picPath;
     public Transform parent;
     public Vector2 picSize = new Vector2(200, 200);
-    GameObject go=null;
+    GameObject go = null;
 
 
     //子物体与父物体同时存在collider时 会忽略掉子物体的collider
@@ -32,8 +32,10 @@ public class ClickTextPopImage : MonoBehaviour
     private void PressGesture_Pressed(object sender, EventArgs e)
     {
         PopImage();
-        //Debug.Log("弹出图片");
+        //Debug.Log("弹出图片");        
     }
+
+    //图片
     Transform productPicTransform;
     void CreateImage()
     {
@@ -48,9 +50,9 @@ public class ClickTextPopImage : MonoBehaviour
         productPicTransform = go.transform.GetChild(0);
         productPicTransform.GetComponent<Image>().sprite = sprite;
         productPicTransform.GetComponent<RectTransform>().sizeDelta = picSize;
-        productPicTransform.GetComponent<BoxCollider>().size = new Vector3(picSize.x, picSize.y,10);
+        productPicTransform.GetComponent<BoxCollider>().size = new Vector3(picSize.x, picSize.y, 10);
         //让图片能够点击
-        PictureItem pictureItem= productPicTransform.gameObject.AddComponent<PictureItem>();
+        PictureItem pictureItem = productPicTransform.gameObject.AddComponent<PictureItem>();
         //图片隐藏时 恢复自己的碰撞
         pictureItem.unityAction = ResetCollider;
 
@@ -63,7 +65,7 @@ public class ClickTextPopImage : MonoBehaviour
     }
     void PopImage()
     {
-        if (go!=null)
+        if (go != null)
         {
             go.SetActive(true);
         }
@@ -73,12 +75,12 @@ public class ClickTextPopImage : MonoBehaviour
         }
 
         productPicTransform.DOScale(0.2f, 1).From();
-        myCollider.enabled = false;      
+        myCollider.enabled = false;
     }
 
     private void OnDisable()
     {
-        if (go!=null)
+        if (go != null)
         {
             productPicTransform.DOKill();
             go.SetActive(false);

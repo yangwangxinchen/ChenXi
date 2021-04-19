@@ -6,6 +6,12 @@ using UnityEngine;
 
 public class BackButton : MonoBehaviour
 {
+    //当前连触时间
+    float intervalTime;
+    //间隔时间
+    float desireTime = 1f;
+    //当前点击
+    bool isClick;
 
     public  GameObject backPage;
     public GameObject currentPage;
@@ -22,11 +28,29 @@ public class BackButton : MonoBehaviour
 
     private void PressGesture_Pressed(object sender, EventArgs e)
     {
-        backPage.SetActive(true);
-        currentPage.SetActive(false);
+        if (isClick)
+        {
+            backPage.SetActive(true);
+            currentPage.SetActive(false);
+            isClick = false;
+
+        }
+       
     }
 
-
+    private void Update()
+    {
+        if (isClick==false)
+        {
+            intervalTime += Time.deltaTime;
+            if (intervalTime >= desireTime)
+            {
+                isClick = true;
+                intervalTime = 0;
+            }
+        }
+        
+    }
 
 
 }
